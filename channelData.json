@@ -1,7 +1,7 @@
 {
-    "channel": "Lukkhz",
-    "username": "Lukkhz",
-    "password": "oauth:p4f92x8udvr8hbc54k1ani6tf2h6kn",
+    "channel": "<target_channel>",
+    "username": "<usuário>",
+    "password": "<oauth_token>",
     "channelCommands": [
         {
             "command": "!teste",
