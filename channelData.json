@@ -1,0 +1,12 @@
+{
+    "channel": "Lukkhz",
+    "username": "Lukkhz",
+    "password": "oauth:p4f92x8udvr8hbc54k1ani6tf2h6kn",
+    "channelCommands": [
+        {
+            "command": "!teste",
+            "message": "testinho",
+            "disabled": false
+        }
+    ]
+}

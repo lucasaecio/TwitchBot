@@ -1,24 +1,25 @@
 const TwitchCommands = require('./TwitchCommands');
+const channelData = require('./channelData.json');
 const tmi = require('tmi.js');
 
 
 class TwitchChatBot {
 
-    constructor(data) {
-      this.channel = data.channel;
+    constructor() {
+      this.channel = channelData.channel;
         this.client = new tmi.Client({
             identity: {
-              username: data.username,
-              password: data.password
+              username: channelData.username,
+              password: channelData.password
             },
             connection: {
               secure: true,
               reconnect: true
             },
-            channels: [ data.channel ]
+            channels: [ channelData.channel ]
           });
 
-        this.chatCommands = data.channelCommands;
+        this.chatCommands = TwitchCommands.getCommands();
     }
 
     connect() {
@@ -27,14 +28,16 @@ class TwitchChatBot {
     
     handleMessages(){
         this.client.on('message', (channel, tags, message, self) => {
-          console.log(`${tags['display-name']}: ${message}`);
           this.handleCommand(message);
         });
     }
 
     handleCommand(message) {
-      if(this.chatCommands[message]) {
-        this.client.say(this.channel, this.chatCommands[message]);
+      const findCommand = (value) => value.command === message;
+      const commandObject = this.chatCommands.find(findCommand);
+
+      if(commandObject && !commandObject.disabled) {
+        this.client.say(this.channel, commandObject.message);
       }
 
       if(message.includes("!addCommand")) {
