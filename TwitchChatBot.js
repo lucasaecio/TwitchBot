@@ -51,7 +51,7 @@ class TwitchChatBot {
         } else {
           this.client.say(this.channel, `Erro ao criar comando: addCommand <command> <message>`);
         }
-      } else if (message.includes("!clearChat")) {
+      } else if (message.includes("!clearchat")) {
         this.client.clear(this.channel)
       } else if (message.includes("!ban ")) {
         if(splittedMessage.length < 2) return false;
